@@ -21,3 +21,11 @@ def test_full_house():
 def test_3_of_a_kind():
     hand = "2H 4C 7C 7D 7S"
     assert check_hand(hand) == "3 of a kind"
+
+def test_a_pair():
+    hand = "2H 2C 1C 3C 4C"
+    assert check_hand(hand) == "a pair"
+
+def test_2_pairs():
+    hand = "2H 2S 1C 3C 3H"
+    assert check_hand(hand) == "2 pairs"
