@@ -16,13 +16,18 @@ def check_hand(hand):
     for card in cards:
         hand_of_cards.append(Card(card))
 
-    unique_values = []
+    unique_values = {}
+
     for card in hand_of_cards:
-        if card.value not in unique_values:
-            unique_values.append(card.value)
-
-    if len(unique_values) == 2:
+        if card.value not in unique_values.keys():
+            unique_values[card.value] = 1
+        else:
+            unique_values[card.value] += 1
+  
+    if unique_values[max(unique_values)] == 4:
         return "4 of a kind"
-
+    elif unique_values[max(unique_values)] == 3 and unique_values[min(unique_values)] == 2:
+        return "Full house"
+    
     raise Exception
 

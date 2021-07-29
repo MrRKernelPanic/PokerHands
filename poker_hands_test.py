@@ -13,3 +13,7 @@ def test_flush():
 def test_4_of_a_kind():
     hand = "2H 7C 7D 7H 7S"
     assert check_hand(hand) == "4 of a kind"
+
+def test_full_house():
+    hand = "2H 2C 7C 7D 7S"
+    assert check_hand(hand) == "Full house"
