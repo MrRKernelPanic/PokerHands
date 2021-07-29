@@ -17,3 +17,7 @@ def test_4_of_a_kind():
 def test_full_house():
     hand = "2H 2C 7C 7D 7S"
     assert check_hand(hand) == "Full house"
+
+def test_3_of_a_kind():
+    hand = "2H 4C 7C 7D 7S"
+    assert check_hand(hand) == "3 of a kind"

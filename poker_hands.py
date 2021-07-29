@@ -28,6 +28,8 @@ def check_hand(hand):
         return "4 of a kind"
     elif unique_values[max(unique_values)] == 3 and unique_values[min(unique_values)] == 2:
         return "Full house"
+    elif unique_values[max(unique_values)] == 3 and unique_values[min(unique_values)] == 1:
+        return "3 of a kind"
     
     raise Exception
 
