@@ -1,15 +1,7 @@
 from card import Card
 
 
-def check_hand(hand):
-    hearts = hand.count("H")   
-    spades = hand.count("S")
-    clubs = hand.count("C")
-    diamonds = hand.count("D")
-
-    if hearts == 5 or spades == 5 or clubs == 5 or diamonds == 5:
-        return "Flush"
-    
+def check_hand(hand):    
     cards = hand.split(" ")
 
     hand_of_cards = []
@@ -17,12 +9,21 @@ def check_hand(hand):
         hand_of_cards.append(Card(card))
 
     unique_values = {}
+    unique_suits = {}
 
     for card in hand_of_cards:
+        if card.value not in unique_suits.keys():
+            unique_suits[card.suit] = 1
+        else:
+            unique_suits[card.suit] += 1
+
         if card.value not in unique_values.keys():
             unique_values[card.value] = 1
         else:
             unique_values[card.value] += 1
+    
+    if len(unique_suits) == 1:
+        return "Flush"
 
     if unique_values[max(unique_values)] == 4:
         return "4 of a kind"
