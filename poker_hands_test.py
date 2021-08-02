@@ -41,4 +41,3 @@ def test_straight():
 def test_straight_flush():
     hand = "9H 10H JH QH KH"
     assert check_hand(hand) == "Straight Flush"
-

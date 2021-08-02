@@ -8,3 +8,4 @@ class Hand:
         self.cards = []
         for card in raw_cards_input:
             self.cards.append(Card(card))
+            
