@@ -6,8 +6,8 @@ def check_hand(raw_hand):
     hand = Hand(raw_hand)
     unique_values = {}
     unique_suits = {}
-    max_card = 0
-    min_card = 15
+    max_card_num_value = 0
+    min_card_num_value = 15
 
     for card in hand.cards:
         if card.value not in unique_suits.keys():
@@ -20,21 +20,23 @@ def check_hand(raw_hand):
         else:
             unique_values[card.value] += 1
         
-        if card.value < min_card:
-            min_card = card.value
+        if card.value < min_card_num_value:
+            min_card_num_value = card.value
 
-        if card.value > max_card:
-            max_card = card.value
+        if card.value > max_card_num_value:
+            max_card_num_value = card.value
 
-    print(max_card)
-    print(min_card)
+    #print(max_card)
+    #print(min_card)
 
     if len(unique_suits) == 1:
-        if max_card - min_card == 4:
+        if max_card_num_value - min_card_num_value == 4:
             return "Straight Flush"
         else:
             return "Flush"
 
+    if max_card_num_value - min_card_num_value == 4:
+            return "Straight"
 
     if unique_values[max(unique_values, key = unique_values.get)] == 4:
         return "4 of a kind"

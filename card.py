@@ -1,7 +1,7 @@
 class Card:
     def __init__(self, raw_card):
         
-        dict_value = {
+        dict_card_num_value = {
             "2":2, 
             "3":3, 
             "4":4, 
@@ -16,8 +16,8 @@ class Card:
             "K":13, 
             "1":14
             }
-            
+
         self.suit = raw_card[-1]
-        self.value = dict_value[raw_card.replace(self.suit,"")]
+        self.value = dict_card_num_value[raw_card.replace(self.suit,"")]
         
 

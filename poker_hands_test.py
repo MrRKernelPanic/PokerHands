@@ -34,6 +34,11 @@ def test_can_handle_ten():
     hand = "10H 10C 10D 8C 10S"
     assert check_hand(hand) == "4 of a kind"
 
+def test_straight():
+    hand = "9H 10D JH QS KH"
+    assert check_hand(hand) == "Straight"
+
 def test_straight_flush():
     hand = "9H 10H JH QH KH"
     assert check_hand(hand) == "Straight Flush"
+
