@@ -1,11 +1,23 @@
 class Card:
     def __init__(self, raw_card):
-        self.suit = raw_card[-1]
-        self.value = raw_card.replace(self.suit,"")
         
-        #if len(raw_card) == 2:
-        #    self.value = raw_card[0]
-        #    self.suit = raw_card[1]
-        #else:
-        #    self.value = raw_card[0:1]
-        #    self.suit = raw_card[2]
+        dict_value = {
+            "2":2, 
+            "3":3, 
+            "4":4, 
+            "5":5, 
+            "6":6, 
+            "7":7, 
+            "8":8, 
+            "9":9, 
+            "10":10, 
+            "J":11, 
+            "Q":12, 
+            "K":13, 
+            "1":14
+            }
+            
+        self.suit = raw_card[-1]
+        self.value = dict_value[raw_card.replace(self.suit,"")]
+        
+
