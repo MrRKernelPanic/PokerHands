@@ -17,11 +17,11 @@ def check_hand(raw_hand):
             unique_values[card.value] = 1
         else:
             unique_values[card.value] += 1
-    
+                
     if len(unique_suits) == 1:
         return "Flush"
 
-    if unique_values[max(unique_values)] == 4:
+    if unique_values[max(unique_values, key = unique_values.get)] == 4:
         return "4 of a kind"
     elif unique_values[max(unique_values)] == 3 and unique_values[min(unique_values)] == 2:
         return "Full house"
@@ -40,4 +40,3 @@ def check_hand(raw_hand):
 
 
     raise Exception
-

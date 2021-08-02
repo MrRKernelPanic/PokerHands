@@ -29,3 +29,11 @@ def test_a_pair():
 def test_2_pairs():
     hand = "2H 2S 1C 3C 3H"
     assert check_hand(hand) == "2 pairs"
+
+def test_can_handle_ten():
+    hand = "10H 10C 10D 8C 10S"
+    assert check_hand(hand) == "4 of a kind"
+
+def test_straight_flush():
+    hand = "9H 10H JH QH KH"
+    assert check_hand(hand) == "Straight Flush"
