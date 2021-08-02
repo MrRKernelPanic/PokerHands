@@ -23,10 +23,6 @@ def check_hand(hand):
             unique_values[card.value] = 1
         else:
             unique_values[card.value] += 1
-    print ("!!!!!!!!!")
-    print(unique_values)
-    #print(unique_values[max(unique_values, key=unique_values.get)])
-    #print(counter(unique_values.values))
 
     if unique_values[max(unique_values)] == 4:
         return "4 of a kind"
