@@ -1,17 +1,13 @@
 from card import Card
+from hand import Hand
 
 
-def check_hand(hand):    
-    cards = hand.split(" ")
-
-    hand_of_cards = []
-    for card in cards:
-        hand_of_cards.append(Card(card))
-
+def check_hand(raw_hand):    
+    hand = Hand(raw_hand)
     unique_values = {}
     unique_suits = {}
 
-    for card in hand_of_cards:
+    for card in hand.cards:
         if card.value not in unique_suits.keys():
             unique_suits[card.suit] = 1
         else:
