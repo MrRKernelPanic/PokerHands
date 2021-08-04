@@ -1,23 +1,16 @@
 class Card:
     def __init__(self, raw_card):
         
-        dict_card_num_value = {
-            "2" : 2, 
-            "3" : 3, 
-            "4" : 4, 
-            "5" : 5, 
-            "6" : 6, 
-            "7" : 7, 
-            "8" : 8, 
-            "9" : 9, 
-            "10" : 10, 
+        card_num_value = {
             "J" : 11, 
             "Q" : 12, 
             "K" : 13, 
             "1" : 14
             }
+        self.suit = raw_card[-1]       
+        raw_card_value = raw_card.replace(self.suit,"")
 
-        self.suit = raw_card[-1]
-        self.value = dict_card_num_value[raw_card.replace(self.suit,"")]
-        
-
+        if raw_card_value in card_num_value.keys():
+            self.value = card_num_value[raw_card_value]
+        else:
+            self.value = int(raw_card_value)
