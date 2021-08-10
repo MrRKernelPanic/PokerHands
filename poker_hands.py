@@ -13,13 +13,21 @@ def check_hand(raw_player_hands):
     black_poker_hand = black_hand.find_poker_hand()
     white_poker_hand = white_hand.find_poker_hand()
     
-    print(white_poker_hand)
-    print(black_poker_hand)
+    hand_types = ["Straight Flush", "4 of a kind", "Full house"]
 
-    if white_poker_hand == "Straight Flush":
-        return "White wins, - with " + white_poker_hand
-    if black_poker_hand == "4 of a kind":
-        return "Black wins, - with " + black_poker_hand
-    if black_poker_hand == "Full house":
-        return "Black wins, - with " + black_poker_hand
-    raise Exception
+    winner = "Nobody"
+    winning_hand = ""
+
+    for hand_type in hand_types:
+        if white_poker_hand == hand_type or black_poker_hand == hand_type:
+            if white_poker_hand == hand_type:
+                winner = "White"
+                winning_hand =  white_poker_hand
+                break
+            else:
+                winner = "Black"
+                winning_hand =  black_poker_hand
+                break
+    print(winning_hand)            
+    return winner + " wins, - with " + winning_hand
+    
