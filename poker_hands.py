@@ -14,8 +14,12 @@ def check_hand(raw_player_hands):
     white_poker_hand = white_hand.find_poker_hand()
     
     print(white_poker_hand)
+    print(black_poker_hand)
 
     if white_poker_hand == "Straight Flush":
         return "White wins, - with " + white_poker_hand
-
+    if black_poker_hand == "4 of a kind":
+        return "Black wins, - with " + black_poker_hand
+    if black_poker_hand == "Full house":
+        return "Black wins, - with " + black_poker_hand
     raise Exception

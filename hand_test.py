@@ -10,7 +10,7 @@ def test_4_of_a_kind():
     assert hand.find_poker_hand() == "4 of a kind"
 
 def test_full_house():
-    hand = Hand("2H 2C 7C 7D 7S")
+    hand = Hand("3H 3C 3D 9H 9C")
     assert hand.find_poker_hand() == "Full house"
 
 def test_3_of_a_kind():

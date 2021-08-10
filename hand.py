@@ -31,9 +31,9 @@ class Hand:
 
         if self.unique_values[max(self.unique_values, key = self.unique_values.get)] == 4:
             return "4 of a kind"
-        elif self.unique_values[max(self.unique_values)] == 3 and self.unique_values[min(self.unique_values)] == 2:
+        elif self.unique_values[max(self.unique_values, key=self.unique_values.get)] == 3 and self.unique_values[min(self.unique_values, key=self.unique_values.get)] == 2:
             return "Full house"
-        elif self.unique_values[max(self.unique_values)] == 3 and self.unique_values[min(self.unique_values)] == 1:
+        elif self.unique_values[max(self.unique_values, key=self.unique_values.get)] == 3 and self.unique_values[min(self.unique_values, key=self.unique_values.get)] == 1:
             return "3 of a kind"
         elif self.unique_values[max(self.unique_values, key=self.unique_values.get)] == 2:
             pair_count = 0
