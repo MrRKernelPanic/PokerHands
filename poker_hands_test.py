@@ -16,3 +16,7 @@ def test_full_house_black_wins():
 def test_flush_white_wins():
     test_hand = "Black: 1C 2S 3H 4D 7C  White: 3H 4H 5H 7H 10H"
     assert check_hand(test_hand) == "White wins, - with Flush"
+
+def test_straight_white_wins():
+    test_hand = "Black: 1C 2S 3H 4D 7C  White: 3C 4D 5S 6C 7D"
+    assert check_hand(test_hand) == "White wins, - with Straight"

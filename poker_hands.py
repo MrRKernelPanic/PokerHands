@@ -12,7 +12,7 @@ def check_hand(raw_player_hands):
     black_poker_hand = black_hand.find_poker_hand()
     white_poker_hand = white_hand.find_poker_hand()
     
-    hand_types = ["Straight Flush", "4 of a kind", "Full house", "Flush"]
+    hand_types = ["Straight Flush", "4 of a kind", "Full house", "Flush", "Straight"]
 
     hands_to_compare = {
                         "Black": black_poker_hand,
