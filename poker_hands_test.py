@@ -26,5 +26,9 @@ def test_three_of_a_kind_black_wins():
     assert check_hand(test_hand) == "Black wins, - with 3 of a kind"
 
 def test_two_pairs_white_wins():
-    test_hand = "Black: 2C 2D 9C 8C  White: 2S 2H 4S 4C JC"
+    test_hand = "Black: 2C 2D 9C 8C 7S  White: 2S 2H 4S 4C JC"
     assert check_hand(test_hand) == "White wins, - with 2 pairs"
+
+def test_a_pair_black_wins():
+    test_hand = "Black: 2C 2D 9C 8C 7S  White: 2S 1H 4S 3H JH"
+    assert check_hand(test_hand) == "Black wins, - with a pair"
