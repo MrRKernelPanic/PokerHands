@@ -18,11 +18,10 @@ def check_hand(raw_player_hands):
                         "Black": black_poker_hand,
                         "White": white_poker_hand
                         }
-    
+                        
     for hand_type in hand_types:
         for key, value in hands_to_compare.items():
             if hand_type == value:
                 return key + " wins, - with " + value             
 
     return "Nobody Wins"
-    
