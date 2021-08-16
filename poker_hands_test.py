@@ -32,3 +32,7 @@ def test_two_pairs_white_wins():
 def test_a_pair_black_wins():
     test_hand = "Black: 2C 2D 9C 8C 7S  White: 2S 1H 4S 3H JH"
     assert check_hand(test_hand) == "Black wins, - with a pair"
+
+def test_highest_card_white_wins():
+    test_hand = "Black: 2C 3D 9C 8C 7S  White: 3C 4D 10C 9H 8H"
+    assert check_hand(test_hand) == "White wins, - with high card: 10"

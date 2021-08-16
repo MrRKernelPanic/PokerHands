@@ -45,7 +45,9 @@ class Hand:
                 return "a pair"
             else:
                 return "2 pairs"
-
+        else:
+            return "high card"
+            
     def get_unique_suits(self):
         for card in self.cards:
             if card.value not in self.unique_suits.keys():
