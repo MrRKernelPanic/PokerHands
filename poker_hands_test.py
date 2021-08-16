@@ -12,3 +12,7 @@ def test_4_of_a_kind_black_wins():
 def test_full_house_black_wins():
     test_hand = "Black: 2H 2C 7C 7D 7S  White: 3H 3C 3D 9H 8C"
     assert check_hand(test_hand) == "Black wins, - with Full house"
+
+def test_flush_white_wins():
+    test_hand = "Black: 1C 2S 3H 4D 7C  White: 3H 4H 5H 7H 10H"
+    assert check_hand(test_hand) == "White wins, - with Flush"
