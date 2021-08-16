@@ -20,3 +20,7 @@ def test_flush_white_wins():
 def test_straight_white_wins():
     test_hand = "Black: 1C 2S 3H 4D 7C  White: 3C 4D 5S 6C 7D"
     assert check_hand(test_hand) == "White wins, - with Straight"
+
+def test_three_of_a_kind_black_wins():
+    test_hand = "Black: 2C 2D 2H 9C 8D  White: 2D 3D 4D 9S 9H"
+    assert check_hand(test_hand) == "Black wins, - with 3 of a kind"
