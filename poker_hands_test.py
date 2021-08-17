@@ -56,3 +56,7 @@ def test_each_player_has_2_pairs_highest_black_wins():
 def test_each_player_has_a_pair_highest_white_wins():
     test_hand = "Black: 1C 2D 4H 4S 10H  White: 2C 3C 5H 5C JS"
     assert check_hand(test_hand) == "White wins, - with a pair: 5 over 4"
+
+def test_each_player_has_3_of_a_kind_black_wins():
+    test_hand = "Black: 8C 8D 8H 9S 7D  White: 2C 2D 2H 9D 7S"
+    assert check_hand(test_hand) == "Black wins, - with 3 of a kind: 8 over 2"
