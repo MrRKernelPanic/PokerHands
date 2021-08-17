@@ -28,10 +28,7 @@ def check_hand(raw_player_hands):
             else:
                 return "Black wins, - with " + black_poker_hand + ": " + str(black_hand.get_max_card_value())
 
-        if black_poker_hand == "2 pairs" and white_poker_hand == "2 pairs":
-            #throW away spare card.
-            #count number of times card in hand
-            #set hightest of the 2.
+        if (black_poker_hand == "2 pairs" and white_poker_hand == "2 pairs") or (black_poker_hand == "a pair" and white_poker_hand == "a pair"):
 
             high_black = 0
             high_white = 0
