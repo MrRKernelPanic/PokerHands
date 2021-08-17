@@ -13,13 +13,16 @@ class Hand:
         for card in raw_cards_input:
             self.cards.append(Card(card))
 
+        self.card_values = []
+
     def find_poker_hand(self):
 
         self.max_card_num_value = self.get_max_card_value()
         self.min_card_num_value = self.get_min_card_value()
         self.unique_values = self.get_unique_values()
         self.unique_suits = self.get_unique_suits()
-        
+        self.card_values = self.get_card_values()
+
         if len(self.unique_suits) == 1:
             if self.max_card_num_value - self.min_card_num_value == 4:
                 return "Straight Flush"
@@ -76,3 +79,8 @@ class Hand:
                 self.max_card_num_value = card.value
         return self.max_card_num_value
     
+    def get_card_values(self):
+        self.card_values=[]
+        for card in self.cards:
+            self.card_values.append(card.value)
+        return self.card_values

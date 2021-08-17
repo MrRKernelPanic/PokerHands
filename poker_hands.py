@@ -28,6 +28,33 @@ def check_hand(raw_player_hands):
             else:
                 return "Black wins, - with " + black_poker_hand + ": " + str(black_hand.get_max_card_value())
 
+        if black_poker_hand == "2 pairs" and white_poker_hand == "2 pairs":
+            #throW away spare card.
+            #count number of times card in hand
+            #set hightest of the 2.
+
+            high_black = 0
+            high_white = 0
+            
+            for each_card in black_hand.card_values:
+                count = black_hand.card_values.count(each_card)
+                if count == 2:
+                    if each_card >= high_black:
+                        high_black = each_card
+
+            for each_card in white_hand.card_values:
+                count = white_hand.card_values.count(each_card)
+                if count == 2:
+                    if each_card >= high_white:
+                        high_white = each_card
+
+            if high_black < high_white:
+                return "White wins, - with " + white_poker_hand + ": " + str(high_white) + " over " + str(high_black)
+            elif high_black == high_white:
+                return "not implemented yet"
+            else:
+                return "Black wins, - with " + black_poker_hand + ": " + str(high_black) + " over " + str(high_white)
+
         for key, value in hands_to_compare.items():
             if hand_type == value:
                 return key + " wins, - with " + value             
