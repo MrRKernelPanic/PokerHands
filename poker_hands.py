@@ -24,49 +24,40 @@ def check_hand(raw_player_hands):
         high_black = 0
         high_white = 0
 
-        if black_poker_hand == "high card" and white_poker_hand == "high card":
-            if white_hand.get_max_card_value() > black_hand.get_max_card_value():
-                return "White wins, - with " + white_poker_hand + ": " + str(white_hand.get_max_card_value())
-            elif white_hand.get_max_card_value() == black_hand.get_max_card_value():
-                return "Draw"
-            else:
-                return "Black wins, - with " + black_poker_hand + ": " + str(black_hand.get_max_card_value())
+        if black_poker_hand == white_poker_hand:
 
-        if (black_poker_hand == "2 pairs" and white_poker_hand == "2 pairs") or (black_poker_hand == "a pair" and white_poker_hand == "a pair"):
-            for each_card in black_hand.card_values:
-                count = black_hand.card_values.count(each_card)
-                if count == 2:
-                    if each_card >= high_black:
-                        high_black = each_card
+            if black_poker_hand == "high card":
+                high_black = highest_card_in_poker_hand(black_hand, 1)
+                high_white = highest_card_in_poker_hand(white_hand, 1)
+                # if white_hand.get_max_card_value() > black_hand.get_max_card_value():
+                #     return "White wins, - with " + white_poker_hand + ": " + str(white_hand.get_max_card_value())
+                # elif white_hand.get_max_card_value() == black_hand.get_max_card_value():
+                #     return "Draw"
+                # else:
+                #     return "Black wins, - with " + black_poker_hand + ": " + str(black_hand.get_max_card_value())
 
-            for each_card in white_hand.card_values:
-                count = white_hand.card_values.count(each_card)
-                if count == 2:
-                    if each_card >= high_white:
-                        high_white = each_card
-
-            if high_black < high_white:
-                return "White wins, - with " + white_poker_hand + ": " + str(high_white) + " over " + str(high_black)
-            elif high_black == high_white:
-                return "not implemented yet"
-            else:
-                return "Black wins, - with " + black_poker_hand + ": " + str(high_black) + " over " + str(high_white)
-
-        if black_poker_hand == "3 of a kind" and white_poker_hand == "3 of a kind":
-            for each_card in black_hand.card_values:
-                count = black_hand.card_values.count(each_card)
-                if count == 3:
-                    high_black = each_card
-
-            for each_card in white_hand.card_values:
-                    count = white_hand.card_values.count(each_card)
-                    if count == 3:
-                        high_white = each_card    
+            if (black_poker_hand == "2 pairs") or (black_poker_hand == "a pair"):
             
+                high_black = highest_card_in_poker_hand(black_hand, 2)
+                high_white = highest_card_in_poker_hand(white_hand, 2)
+
+                # if high_black < high_white:
+                #     return "White wins, - with " + white_poker_hand + ": " + str(high_white) + " over " + str(high_black)
+                # elif high_black == high_white:
+                #     return "not implemented yet"
+                # else:
+                #     return "Black wins, - with " + black_poker_hand + ": " + str(high_black) + " over " + str(high_white)
+
+            if black_poker_hand == "3 of a kind" and white_poker_hand == "3 of a kind":
+                
+                high_black = highest_card_in_poker_hand(black_hand, 3)
+                high_white = highest_card_in_poker_hand(white_hand, 3)
+            
+                   
             if high_black < high_white:
                 return "White wins, - with " + white_poker_hand + ": " + str(high_white) + " over " + str(high_black)
             elif high_black == high_white:
-                return "not implemented yet"
+                return "Draw"
             else:
                 return "Black wins, - with " + black_poker_hand + ": " + str(high_black) + " over " + str(high_white)
 
@@ -74,3 +65,12 @@ def check_hand(raw_player_hands):
             if hand_type == value:
                 return key + " wins, - with " + value             
     return "Nobody Wins"
+
+def highest_card_in_poker_hand(player_hand, num_of_a_kind):
+    high_card_value = 0
+    for each_card in player_hand.card_values:
+                count = player_hand.card_values.count(each_card)
+                if count == num_of_a_kind:
+                    if each_card >= high_card_value:
+                        high_card_value = each_card
+    return high_card_value

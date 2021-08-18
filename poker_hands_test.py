@@ -35,11 +35,11 @@ def test_a_pair_black_wins():
 
 def test_highest_card_white_wins():
     test_hand = "Black: 2C 3D 9C 8C 7S  White: 3C 4D 10C 9H 8H"
-    assert check_hand(test_hand) == "White wins, - with high card: 10"
+    assert check_hand(test_hand) == "White wins, - with high card: 10 over 9"
 
 def test_highest_card_black_wins():
     test_hand = "Black: 2C 3D JC 8C 7S  White: 3C 4D 9C 2H 8H"
-    assert check_hand(test_hand) == "Black wins, - with high card: 11"
+    assert check_hand(test_hand) == "Black wins, - with high card: 11 over 9"
 
 def test_highest_card_draw():
     test_hand = "Black: 2C 3D JC 8C 7S  White: 3C 4D 9C JH 8H"
