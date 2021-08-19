@@ -24,8 +24,6 @@ def check_hand(raw_player_hands):
     black_poker_hand = black_hand.find_poker_hand()
     white_poker_hand = white_hand.find_poker_hand()
     
-    hand_types = ["Straight Flush", "4 of a kind", "Full house", "Flush", "Straight", "3 of a kind", "2 pairs", "a pair", "high card"]
-
     hands_to_compare = {
                         "Black": black_poker_hand,
                         "White": white_poker_hand
@@ -53,7 +51,6 @@ def check_hand(raw_player_hands):
             
             high_black = highest_card_in_poker_hand(black_hand, 4)
             high_white = highest_card_in_poker_hand(white_hand, 4)
-        
             
         if high_black < high_white:
             return "White wins, - with " + white_poker_hand + ": " + str(high_white) + " over " + str(high_black)
@@ -62,41 +59,7 @@ def check_hand(raw_player_hands):
         else:
             return "Black wins, - with " + black_poker_hand + ": " + str(high_black) + " over " + str(high_white)
 
-
     for hand_type in PHand:
-
-        # high_black = 0
-        # high_white = 0
-
-        # if black_poker_hand == white_poker_hand:
-
-        #     if black_poker_hand == PHand.HIGH_CARD or black_poker_hand == PHand.FLUSH or black_poker_hand == PHand.STRAIGHT_FLUSH:
-        #         high_black = highest_card_in_poker_hand(black_hand, 1)
-        #         high_white = highest_card_in_poker_hand(white_hand, 1)
-               
-        #     if black_poker_hand == PHand.TWO_PAIRS or black_poker_hand == PHand.A_PAIR:
-            
-        #         high_black = highest_card_in_poker_hand(black_hand, 2)
-        #         high_white = highest_card_in_poker_hand(white_hand, 2)
-
-        #     if black_poker_hand == PHand.THREE_UF_A_KIND or black_poker_hand == PHand.FULL_HOUSE:
-                
-        #         high_black = highest_card_in_poker_hand(black_hand, 3)
-        #         high_white = highest_card_in_poker_hand(white_hand, 3)
-            
-        #     if black_poker_hand == PHand.FOUR_OF_A_KIND:
-                
-        #         high_black = highest_card_in_poker_hand(black_hand, 4)
-        #         high_white = highest_card_in_poker_hand(white_hand, 4)
-            
-                   
-        #     if high_black < high_white:
-        #         return "White wins, - with " + white_poker_hand + ": " + str(high_white) + " over " + str(high_black)
-        #     elif high_black == high_white:
-        #         return "Draw"
-        #     else:
-        #         return "Black wins, - with " + black_poker_hand + ": " + str(high_black) + " over " + str(high_white)
-
         for key, value in hands_to_compare.items():
             if hand_type.value == value:
                 return key + " wins, - with " + value             
