@@ -49,7 +49,7 @@ class Hand:
             else:
                 return "2 pairs"
         else:
-            return "high card"
+            return "the highest card"
             
     def get_unique_suits(self):
         for card in self.cards:

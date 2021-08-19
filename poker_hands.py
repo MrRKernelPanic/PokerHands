@@ -26,32 +26,24 @@ def check_hand(raw_player_hands):
 
         if black_poker_hand == white_poker_hand:
 
-            if black_poker_hand == "high card":
+            if black_poker_hand == "the highest card" or black_poker_hand == "Flush" or black_poker_hand == "Straight Flush":
                 high_black = highest_card_in_poker_hand(black_hand, 1)
                 high_white = highest_card_in_poker_hand(white_hand, 1)
-                # if white_hand.get_max_card_value() > black_hand.get_max_card_value():
-                #     return "White wins, - with " + white_poker_hand + ": " + str(white_hand.get_max_card_value())
-                # elif white_hand.get_max_card_value() == black_hand.get_max_card_value():
-                #     return "Draw"
-                # else:
-                #     return "Black wins, - with " + black_poker_hand + ": " + str(black_hand.get_max_card_value())
-
+               
             if (black_poker_hand == "2 pairs") or (black_poker_hand == "a pair"):
             
                 high_black = highest_card_in_poker_hand(black_hand, 2)
                 high_white = highest_card_in_poker_hand(white_hand, 2)
 
-                # if high_black < high_white:
-                #     return "White wins, - with " + white_poker_hand + ": " + str(high_white) + " over " + str(high_black)
-                # elif high_black == high_white:
-                #     return "not implemented yet"
-                # else:
-                #     return "Black wins, - with " + black_poker_hand + ": " + str(high_black) + " over " + str(high_white)
-
-            if black_poker_hand == "3 of a kind" and white_poker_hand == "3 of a kind":
+            if black_poker_hand == "3 of a kind" or black_poker_hand == "Full house":
                 
                 high_black = highest_card_in_poker_hand(black_hand, 3)
                 high_white = highest_card_in_poker_hand(white_hand, 3)
+            
+            if black_poker_hand == "4 of a kind":
+                
+                high_black = highest_card_in_poker_hand(black_hand, 4)
+                high_white = highest_card_in_poker_hand(white_hand, 4)
             
                    
             if high_black < high_white:

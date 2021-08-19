@@ -35,11 +35,11 @@ def test_a_pair_black_wins():
 
 def test_highest_card_white_wins():
     test_hand = "Black: 2C 3D 9C 8C 7S  White: 3C 4D 10C 9H 8H"
-    assert check_hand(test_hand) == "White wins, - with high card: 10 over 9"
+    assert check_hand(test_hand) == "White wins, - with the highest card: 10 over 9"
 
 def test_highest_card_black_wins():
     test_hand = "Black: 2C 3D JC 8C 7S  White: 3C 4D 9C 2H 8H"
-    assert check_hand(test_hand) == "Black wins, - with high card: 11 over 9"
+    assert check_hand(test_hand) == "Black wins, - with the highest card: 11 over 9"
 
 def test_highest_card_draw():
     test_hand = "Black: 2C 3D JC 8C 7S  White: 3C 4D 9C JH 8H"
@@ -60,3 +60,19 @@ def test_each_player_has_a_pair_highest_white_wins():
 def test_each_player_has_3_of_a_kind_black_wins():
     test_hand = "Black: 8C 8D 8H 9S 7D  White: 2C 2D 2H 9D 7S"
     assert check_hand(test_hand) == "Black wins, - with 3 of a kind: 8 over 2"
+
+def test_each_player_has_4_of_a_kind_black_wins():
+    test_hand = "Black: 8C 8D 8H 8S 7D  White: 2C 2D 2H 2D 7S"
+    assert check_hand(test_hand) == "Black wins, - with 4 of a kind: 8 over 2"
+
+def test_each_player_has_full_house_white_wins():
+    test_hand = "Black: 8C 8D 8H 7S 7D  White: 9C 9D 9H 7C 7H"
+    assert check_hand(test_hand) == "White wins, - with Full house: 9 over 8"
+
+def test_each_player_has_flush_white_wins():
+    test_hand = "Black: 3S 2S 4S 5S 7S  White: KH 7H 8H 9H 10H JH"
+    assert check_hand(test_hand) == "White wins, - with Flush: 13 over 7"
+
+def test_each_player_has_flush_black_wins():
+    test_hand = "Black: QH 8H 9H 10H JH  White: 3S 2S 4S 5S 6S"
+    assert check_hand(test_hand) == "Black wins, - with Straight Flush: 12 over 6"
