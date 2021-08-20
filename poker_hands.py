@@ -44,6 +44,8 @@ def check_hand(raw_player_hands):
         if high_black < high_white:
             return "White wins, - with " + white_poker_hand + ": " + str(high_white) + " over " + str(high_black)
         elif high_black == high_white:
+            print (high_black)
+            print (high_white)
             return "Draw"
         else:
             return "Black wins, - with " + black_poker_hand + ": " + str(high_black) + " over " + str(high_white)

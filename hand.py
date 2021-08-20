@@ -2,6 +2,19 @@ from card import Card
 from phands import PHand
 
 class Hand:
+
+    dict_high_card_lookup = {
+        PHand.STRAIGHT_FLUSH : 1, 
+        PHand.FOUR_OF_A_KIND : 4,
+        PHand.FULL_HOUSE : 3,
+        PHand.FLUSH : 1,
+        PHand.STRAIGHT : 1,
+        PHand.THREE_UF_A_KIND :3,
+        PHand.TWO_PAIRS : 2,
+        PHand.A_PAIR : 2,
+        PHand.HIGH_CARD : 1
+        }  
+        
     def __init__(self, raw_card_input):
         raw_cards_input = raw_card_input.split(" ")
         self.max_card_num_value = 0
@@ -14,8 +27,13 @@ class Hand:
             self.cards.append(Card(card))
 
         self.card_values = []
+        self.phand = self.search_for_poker_hand()
+        self.highest_card_in_tie_breaker = self.highest_card_for_tie_breaker(self.dict_high_card_lookup.get(self.phand))
 
     def find_poker_hand(self):
+        return self.phand
+
+    def search_for_poker_hand(self):
 
         self.max_card_num_value = self.get_max_card_value()
         self.min_card_num_value = self.get_min_card_value()
@@ -24,6 +42,7 @@ class Hand:
         self.card_values = self.get_card_values()
 
         if len(self.unique_suits) == 1:
+
             if self.max_card_num_value - self.min_card_num_value == 4:
                 return PHand.STRAIGHT_FLUSH.value
             else:
@@ -84,3 +103,12 @@ class Hand:
         for card in self.cards:
             self.card_values.append(card.value)
         return self.card_values
+
+    def highest_card_for_tie_breaker(self, num_of_a_kind):
+        high_card_value = 0
+        for each_card in self.card_values:
+                    count = self.card_values.count(each_card)
+                    if count == num_of_a_kind:
+                        if each_card >= high_card_value:
+                            high_card_value = each_card
+        return high_card_value
