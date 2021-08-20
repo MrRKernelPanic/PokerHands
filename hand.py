@@ -1,5 +1,5 @@
 from card import Card
-
+from phands import PHand
 
 class Hand:
     def __init__(self, raw_card_input):
@@ -25,19 +25,19 @@ class Hand:
 
         if len(self.unique_suits) == 1:
             if self.max_card_num_value - self.min_card_num_value == 4:
-                return "Straight Flush"
+                return PHand.STRAIGHT_FLUSH.value
             else:
-                return "Flush"
+                return PHand.FLUSH.value
 
         if self.max_card_num_value - self.min_card_num_value == 4:
-            return "Straight"
+            return PHand.STRAIGHT.value
 
         if self.unique_values[max(self.unique_values, key = self.unique_values.get)] == 4:
-            return "4 of a kind"
+            return PHand.FOUR_OF_A_KIND.value
         elif self.unique_values[max(self.unique_values, key=self.unique_values.get)] == 3 and self.unique_values[min(self.unique_values, key=self.unique_values.get)] == 2:
-            return "Full house"
+            return PHand.FULL_HOUSE.value
         elif self.unique_values[max(self.unique_values, key=self.unique_values.get)] == 3 and self.unique_values[min(self.unique_values, key=self.unique_values.get)] == 1:
-            return "3 of a kind"
+            return PHand.THREE_UF_A_KIND.value
         elif self.unique_values[max(self.unique_values, key=self.unique_values.get)] == 2:
             pair_count = 0
             for key in self.unique_values:
@@ -45,11 +45,11 @@ class Hand:
                     pair_count += 1
             
             if pair_count == 1:
-                return "a pair"
+                return PHand.A_PAIR.value
             else:
-                return "2 pairs"
+                return PHand.TWO_PAIRS.value
         else:
-            return "the highest card"
+            return PHand.HIGH_CARD.value
             
     def get_unique_suits(self):
         for card in self.cards:
