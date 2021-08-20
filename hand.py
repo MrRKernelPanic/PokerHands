@@ -4,15 +4,15 @@ from phands import PHand
 class Hand:
 
     dict_high_card_lookup = {
-        PHand.STRAIGHT_FLUSH : 1, 
-        PHand.FOUR_OF_A_KIND : 4,
-        PHand.FULL_HOUSE : 3,
-        PHand.FLUSH : 1,
-        PHand.STRAIGHT : 1,
-        PHand.THREE_UF_A_KIND :3,
-        PHand.TWO_PAIRS : 2,
-        PHand.A_PAIR : 2,
-        PHand.HIGH_CARD : 1
+        PHand.STRAIGHT_FLUSH.value : 1, 
+        PHand.FOUR_OF_A_KIND.value : 4,
+        PHand.FULL_HOUSE.value : 3,
+        PHand.FLUSH.value : 1,
+        PHand.STRAIGHT.value : 1,
+        PHand.THREE_UF_A_KIND.value :3,
+        PHand.TWO_PAIRS.value : 2,
+        PHand.A_PAIR.value : 2,
+        PHand.HIGH_CARD.value : 1
         }  
         
     def __init__(self, raw_card_input):
