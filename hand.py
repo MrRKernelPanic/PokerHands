@@ -27,8 +27,11 @@ class Hand:
             self.cards.append(Card(card))
 
         self.card_values = []
+        self.remainder_values = []
         self.phand = self.search_for_poker_hand()
         self.highest_card_in_tie_breaker = self.highest_card_for_tie_breaker(self.dict_high_card_lookup.get(self.phand))
+        self.remainder_hand_after_high_hand = self.remainder_hand_after_highest_poker_hand()
+        #self.highest_card_of_remaining_hand = 0
 
     def find_poker_hand(self):
         return self.phand
@@ -108,6 +111,35 @@ class Hand:
         high_card_value = 0
         for each_card in self.card_values:
                     count = self.card_values.count(each_card)
+                    if count == num_of_a_kind:
+                        if each_card >= high_card_value:
+                            high_card_value = each_card
+        return high_card_value
+    
+    def remainder_hand_after_highest_poker_hand(self):
+        self.remainder_values = self.card_values.copy()
+        r_item = self.highest_card_in_tie_breaker
+        while r_item in self.remainder_values: self.remainder_values.remove(r_item)
+        unique_values={}
+        for card in self.remainder_values:
+            if card not in unique_values.keys():
+                unique_values[card] = 1
+            else:
+                unique_values[card] += 1
+        
+        if unique_values[max(unique_values, key=unique_values.get)] == 2:
+            self.highest_card_of_remaining_hand = self.remainder_high_card_after_high_hand(2)
+            #print (self.highest_card_of_remaining_hand)
+            return PHand.A_PAIR.value        
+        else:
+            self.highest_card_of_remaining_hand = self.remainder_high_card_after_high_hand(1)
+            #print (self.highest_card_of_remaining_hand)
+            return PHand.HIGH_CARD.value
+    
+    def remainder_high_card_after_high_hand(self, num_of_a_kind):
+        high_card_value = 0
+        for each_card in self.remainder_values:
+                    count = self.remainder_values.count(each_card)
                     if count == num_of_a_kind:
                         if each_card >= high_card_value:
                             high_card_value = each_card
