@@ -23,13 +23,8 @@ def check_hand(raw_player_hands):
         if black_hand.highest_card_in_tie_breaker < white_hand.highest_card_in_tie_breaker:
             return "White wins, - with " + white_poker_hand + ": " + str(white_hand.highest_card_in_tie_breaker) + " over " + str(black_hand.highest_card_in_tie_breaker)
         elif black_hand.highest_card_in_tie_breaker == white_hand.highest_card_in_tie_breaker:
-            #print(black_hand.remainder_hand_after_high_hand)
-            #rint(white_hand.remainder_hand_after_high_hand)
-
             if black_hand.remainder_hand_after_high_hand == "a pair" or white_hand.remainder_hand_after_high_hand == "a pair":
                 if black_hand.remainder_hand_after_high_hand == white_hand.remainder_hand_after_high_hand:
-                    print(black_hand.highest_card_of_remaining_hand)
-                    print(white_hand.highest_card_of_remaining_hand)
                     if black_hand.highest_card_of_remaining_hand > white_hand.highest_card_of_remaining_hand:
                         return "Black wins, - with " + black_hand.remainder_hand_after_high_hand + ": " + str(black_hand.highest_card_of_remaining_hand) + " over " + str(white_hand.highest_card_of_remaining_hand)
                     elif black_hand.highest_card_of_remaining_hand < white_hand.highest_card_of_remaining_hand:
