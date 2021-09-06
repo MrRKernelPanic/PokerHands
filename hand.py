@@ -32,6 +32,7 @@ class Hand:
         self.highest_card_in_tie_breaker = self.highest_card_for_tie_breaker(self.dict_high_card_lookup.get(self.phand))
         self.remainder_hand_after_high_hand = self.remainder_hand_after_highest_poker_hand()
         #self.highest_card_of_remaining_hand = 0
+        self.hand_colour = ""
 
     def find_poker_hand(self):
         return self.phand
