@@ -60,9 +60,9 @@ During refactoring it was decided to use an Enum (Dictionary of the Poker hands)
 A current limitation of the system is the fact that it will only check for a second ```poker hand``` and not beyond, e.g. it will compare a second pair, but if those match it will go no further a rare case like ```Black: 4S 4C 2D 2H 4H  White: 4H 4C 2S 2C 3S``` would not examine the remaining card and declare this a tie
 
 ### Possible Expansions of the project
-+Deal beyond the second ```Poker hand```.
-+Deal with more than 2 players, introduce a third ```Red:```.
-+A simple interface where the hands could be passed.
++ Deal beyond the second ```Poker hand```.
++ Deal with more than 2 players, introduce a third ```Red:```.
++ A simple interface where the hands could be passed.
 
 ### Dependencies
 All code was generated and run in Python 3.x using the [Pytest Framework](https://docs.pytest.org/en/6.2.x/, 'Pytest Guidance') in Visual code.
