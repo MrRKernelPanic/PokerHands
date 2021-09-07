@@ -79,4 +79,9 @@ def test_each_player_has_flush_black_wins():
 
 def test_tie_two_pairs():
     test_hand = "Black: 5H 5C 3H 3C JS  White: 5S 5D 4H 4C 10S"
-    assert check_hand(test_hand) == "White wins, - with a pair: 4 over 3"
+    assert check_hand(test_hand) == "White wins, - with 2 pairs: 4 over 3"
+
+# Extremely Unlikely Cases.
+# def test_tie_two_pairs_highest_card_match():
+#     test_hand = "Black: 5H 5C 4H 4C JS  White: 5S 5D 4D 4S 10S"
+#     assert check_hand(test_hand) == "Black wins, - with 2 pairs: 11 over 10"

@@ -13,8 +13,8 @@ def check_hand(raw_player_hands):
     white_hand = Hand(raw_white_hand)
     white_hand.hand_colour = "White"
 
-    black_poker_hand = black_hand.find_poker_hand()
-    white_poker_hand = white_hand.find_poker_hand()
+    # black_poker_hand = black_hand.find_poker_hand()
+    # white_poker_hand = white_hand.find_poker_hand()
     
     hands_to_compare = [
                         black_hand,
@@ -28,66 +28,32 @@ def check_hand(raw_player_hands):
                 winners.append(hand)
         
         if len(winners) > 1: #Two hands the same
-            print(winners)
+            #print(winners)
             tie_breaker = max(hand.highest_card_in_tie_breaker for hand in winners)
+            #print(hand.highest_card_in_tie_breaker)
             final_list = [hand for hand in winners if hand.highest_card_in_tie_breaker == tie_breaker]
             remainder_list = [hand for hand in winners if hand.highest_card_in_tie_breaker != tie_breaker]
             print(final_list)
 
+            
             if len(final_list) == 1:
+                print ("!!!!!!!")
+                print (final_list[0].highest_card_in_tie_breaker)
                 return final_list[0].hand_colour + " wins, - with " + final_list[0].find_poker_hand() + ": " + str(final_list[0].highest_card_in_tie_breaker) + " over " + str(remainder_list[0].highest_card_in_tie_breaker)
-            # else:
-            #     for hand_type in PHand:
-            #         winners2=[]
-            #         for hand in final_list:
-            #             if hand.find_poker_hand() == hand_type.value:
-            #                 winners2.append(hand)
-            #         if len(winners2) == 1:
-            #             return winners2[0].hand_colour + " wins, - with " + winners2[0].find_poker_hand() + ": " + str(winners[0].remainder_hand_after_highest_poker_hand) + " over " + str(remainder_list[0].highest_card_in_tie_breaker)
-            
-            # print(len(pair_wins))
-
-            # if len(pair_wins) == 1:
-            #     print("a pair wins!")
-            #     return pair_wins[0].hand_colour + " wins, - with " + pair_wins[0].remainder_hand_after_high_hand + ": " + str(pair_wins[0].highest_card_of_remaining_hand) + " over " + str(winners[0].highest_card_of_remaining_hand)
-            # elif len(pair_wins) > 1:
-            #     pair_wins.sort(items.highest_card_of_remaining_hand)
-            #     print("working on this!")
-
-            # if len(winners2) == 1:
-            #     print("one winner!")
-            #     #win2 = winners2[0]
-            #     #win1 = winners[0]
-            #     return winners2[0].hand_colour + " wins, - with " + hand_type.value + ": " + str(winners2[0].highest_card_in_tie_breaker) + " over " + str(winners[0].highest_card_in_tie_breaker)
-            
-            # if len(single_wins) == 1:
-            #     print("single winner!")
-            #     return single_wins[0].hand_colour + " wins, - with " + hand_type.value + ": " + str(single_wins[0].highest_card_of_remaining_hand) + " over " + str(winners[0].highest_card_of_remaining_hand)
-            
-            # else:
-            #     print("second check")
-            #     if black_hand.remainder_hand_after_high_hand == white_hand.remainder_hand_after_high_hand:
-            #         if black_hand.highest_card_of_remaining_hand > white_hand.highest_card_of_remaining_hand:
-            #             return "Black wins, - with " + black_hand.remainder_hand_after_high_hand + ": " + str(black_hand.highest_card_of_remaining_hand) + " over " + str(white_hand.highest_card_of_remaining_hand)
-            #         elif black_hand.highest_card_of_remaining_hand < white_hand.highest_card_of_remaining_hand:
-            #             return "White wins, - with " + white_hand.remainder_hand_after_high_hand + ": " + str(white_hand.highest_card_of_remaining_hand) + " over " + str(black_hand.highest_card_of_remaining_hand)
-            #         else:
-            #             return "Draw"
-            #     elif white_hand.remainder_hand_after_high_hand == "a pair":
-            #         return "White wins, - with " + white_hand.remainder_hand_after_high_hand + ": " + str(white_hand.highest_card_of_remaining_hand) + " over " + str(black_hand.highest_card_of_remaining_hand)
-            #     else:
-            #         return "Black wins, - with " + black_hand.remainder_hand_after_high_hand + ": " + str(black_hand.highest_card_of_remaining_hand) + " over " + str(white_hand.highest_card_of_remaining_hand)
+            else:
+                for hand_type in PHand:
+                    tie_breaker = max(hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) for hand in final_list)
+                    final_list2 = [hand for hand in final_list if hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) == tie_breaker]
+                    remainder_list2 = [hand for hand in final_list if hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) != tie_breaker]
+                    
+                    print(len(final_list2))
+                    if len(final_list2) == 1:
+                        # print ("?????????")
+                        return final_list2[0].hand_colour + " wins, - with " + final_list2[0].find_poker_hand() + ": " + str(final_list2[0].remainder_high_card_after_high_hand(final_list2[0].dict_high_card_lookup.get(final_list2[0].phand))) + " over " + str(remainder_list2[0].remainder_high_card_after_high_hand(remainder_list2[0].dict_high_card_lookup.get(remainder_list2[0].phand)))
+                    else:
+                        return ("Tie")    
             
         for hand in hands_to_compare:
             if hand_type.value == hand.find_poker_hand():
                 return hand.hand_colour + " wins, - with " + hand.find_poker_hand()             
     return "Nobody Wins"
-
-# def poker_hand_equal(hand, hand_to_check):
-#     print(hand.find_poker_hand())
-#     print(hand_to_check.value)
-#     if hand.find_poker_hand() == hand_to_check.value:
-       
-#         return True
-#     else:
-#         return False

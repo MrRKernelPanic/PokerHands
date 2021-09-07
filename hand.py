@@ -115,6 +115,7 @@ class Hand:
                     if count == num_of_a_kind:
                         if each_card >= high_card_value:
                             high_card_value = each_card
+        #print(high_card_value)
         return high_card_value
     
     def remainder_hand_after_highest_poker_hand(self):
@@ -130,7 +131,7 @@ class Hand:
         
         if unique_values[max(unique_values, key=unique_values.get)] == 2:
             self.highest_card_of_remaining_hand = self.remainder_high_card_after_high_hand(2)
-            #print (self.highest_card_of_remaining_hand)
+            print ("Highest hand after " + str(PHand.A_PAIR.value) + " " + str(self.highest_card_of_remaining_hand))
             return PHand.A_PAIR.value        
         else:
             self.highest_card_of_remaining_hand = self.remainder_high_card_after_high_hand(1)
