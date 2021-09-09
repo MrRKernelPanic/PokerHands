@@ -15,7 +15,7 @@ class Hand:
         PHand.HIGH_CARD.value : 1
         }  
         
-    def __init__(self, raw_card_input):
+    def __init__(self, raw_card_input, player_colour):
         raw_cards_input = raw_card_input.split(" ")
         self.max_card_num_value = 0
         self.min_card_num_value = 15
@@ -31,8 +31,7 @@ class Hand:
         self.phand = self.search_for_poker_hand()
         self.highest_card_in_tie_breaker = self.highest_card_for_tie_breaker(self.dict_high_card_lookup.get(self.phand))
         self.remainder_hand_after_high_hand = self.remainder_hand_after_highest_poker_hand()
-        #self.highest_card_of_remaining_hand = 0
-        self.hand_colour = ""
+        self.hand_colour = player_colour
 
     def find_poker_hand(self):
         return self.phand
@@ -108,14 +107,13 @@ class Hand:
             self.card_values.append(card.value)
         return self.card_values
 
-    def highest_card_for_tie_breaker(self, num_of_a_kind):
+    def highest_card_for_tie_breaker(self, num_same_value_cards):
         high_card_value = 0
         for each_card in self.card_values:
                     count = self.card_values.count(each_card)
-                    if count == num_of_a_kind:
+                    if count == num_same_value_cards:
                         if each_card >= high_card_value:
                             high_card_value = each_card
-        #print(high_card_value)
         return high_card_value
     
     def remainder_hand_after_highest_poker_hand(self):
@@ -135,14 +133,13 @@ class Hand:
             return PHand.A_PAIR.value        
         else:
             self.highest_card_of_remaining_hand = self.remainder_high_card_after_high_hand(1)
-            #print (self.highest_card_of_remaining_hand)
             return PHand.HIGH_CARD.value
     
-    def remainder_high_card_after_high_hand(self, num_of_a_kind):
+    def remainder_high_card_after_high_hand(self, num_same_value_cards):
         high_card_value = 0
         for each_card in self.remainder_values:
                     count = self.remainder_values.count(each_card)
-                    if count == num_of_a_kind:
+                    if count == num_same_value_cards:
                         if each_card >= high_card_value:
                             high_card_value = each_card
         return high_card_value
