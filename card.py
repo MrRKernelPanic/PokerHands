@@ -6,7 +6,7 @@ class Card:
             "J" : 11, 
             "Q" : 12, 
             "K" : 13, 
-            "1" : 14
+            "A" : 14
             }
         self.suit = raw_card[-1]       
         raw_card_value = raw_card.replace(self.suit,"")

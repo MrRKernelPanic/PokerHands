@@ -4,17 +4,13 @@ from phands import PHand
 
 def check_hand(raw_player_hands):
     _split = raw_player_hands.split("  ")
-    raw_black_hand = _split[0].replace("Black: ","")
-    raw_white_hand = _split[1].replace("White: ","")
-
-    black_hand = Hand(raw_black_hand, "Black")
-    white_hand = Hand(raw_white_hand, "White")
-   
-    hands_to_compare = [
-                        black_hand,
-                        white_hand
-                        ]
-
+    hands_to_compare = []
+    for hands in _split:
+        _colour = hands.split(':')[0]
+        _raw_hand = hands.replace(_colour + ": ","")        
+        _make_hand = Hand(_raw_hand, _colour)
+        hands_to_compare.append(_make_hand)
+    
     for hand_type in PHand:
         winners_first_pass = []
         for hand in hands_to_compare:
