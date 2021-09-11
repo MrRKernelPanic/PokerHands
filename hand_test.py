@@ -26,13 +26,13 @@ def test_2_pairs():
     assert hand.find_poker_hand() == "2 pairs"
 
 def test_can_handle_ten():
-    hand = Hand("10H 10C 10D 8C 10S", "Black")
+    hand = Hand("TH TC TD 8C 10S", "Black")
     assert hand.find_poker_hand() == "4 of a kind"
 
 def test_straight():
-    hand = Hand("9H 10D JH QS KH", "Black")
+    hand = Hand("9H TD JH QS KH", "Black")
     assert hand.find_poker_hand() == "Straight"
 
 def test_straight_flush():
-    hand = Hand("9H 10H JH QH KH", "White")
+    hand = Hand("9H TH JH QH KH", "White")
     assert hand.find_poker_hand() == "Straight Flush"

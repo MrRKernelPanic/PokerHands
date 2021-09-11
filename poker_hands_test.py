@@ -6,7 +6,7 @@ def test_straight_flush_wins():
     assert check_hand(test_hand) == "White wins, - with Straight Flush"
 
 def test_4_of_a_kind_black_wins():
-    test_hand = "Black: 10H 10C 10D 8C 10S  White: 3H 3D 3C 2H 1H"
+    test_hand = "Black: TH TC TD 8C TS  White: 3H 3D 3C 2H 1H"
     assert check_hand(test_hand) == "Black wins, - with 4 of a kind"
 
 def test_full_house_black_wins():
@@ -14,7 +14,7 @@ def test_full_house_black_wins():
     assert check_hand(test_hand) == "Black wins, - with Full house"
 
 def test_flush_white_wins():
-    test_hand = "Black: 1C 2S 3H 4D 7C  White: 3H 4H 5H 7H 10H"
+    test_hand = "Black: 1C 2S 3H 4D 7C  White: 3H 4H 5H 7H TH"
     assert check_hand(test_hand) == "White wins, - with Flush"
 
 def test_straight_white_wins():
@@ -34,7 +34,7 @@ def test_a_pair_black_wins():
     assert check_hand(test_hand) == "Black wins, - with a pair"
 
 def test_highest_card_white_wins():
-    test_hand = "Black: 2C 3D 9C 8C 7S  White: 3C 4D 10C 9H 8H"
+    test_hand = "Black: 2C 3D 9C 8C 7S  White: 3C 4D TC 9H 8H"
     assert check_hand(test_hand) == "White wins, - with the highest card: 10 over 9"
 
 def test_highest_card_black_wins():
@@ -46,15 +46,15 @@ def test_highest_card_draw():
     assert check_hand(test_hand) == "White wins, - with the highest card: 9 over 8"
 
 def test_each_player_has_2_pairs_highest_white_wins():
-    test_hand = "Black: 2C 2D 4H 4S 10H  White: 3C 3C 5H 5C JS"
+    test_hand = "Black: 2C 2D 4H 4S TH  White: 3C 3C 5H 5C JS"
     assert check_hand(test_hand) == "White wins, - with 2 pairs: 5 over 4"
 
 def test_each_player_has_2_pairs_highest_black_wins():
-    test_hand = "Black: 3C 3C 5H 5C JS  White: 2C 2D 4H 4S 10H"
+    test_hand = "Black: 3C 3C 5H 5C JS  White: 2C 2D 4H 4S TH"
     assert check_hand(test_hand) == "Black wins, - with 2 pairs: 5 over 4"
 
 def test_each_player_has_a_pair_highest_white_wins():
-    test_hand = "Black: 1C 2D 4H 4S 10H  White: 2C 3C 5H 5C JS"
+    test_hand = "Black: 1C 2D 4H 4S TH  White: 2C 3C 5H 5C JS"
     assert check_hand(test_hand) == "White wins, - with a pair: 5 over 4"
 
 def test_each_player_has_3_of_a_kind_black_wins():
@@ -70,7 +70,7 @@ def test_each_player_has_full_house_white_wins():
     assert check_hand(test_hand) == "White wins, - with Full house: 9 over 8"
 
 def test_each_player_has_flush_white_wins():
-    test_hand = "Black: 3S 2S 4S 5S 7S  White: KH 7H 8H 9H 10H JH"
+    test_hand = "Black: 3S 2S 4S 5S 7S  White: KH 7H 8H 9H TH JH"
     assert check_hand(test_hand) == "White wins, - with Flush: 13 over 7"
 
 def test_each_player_has_flush_black_wins():
@@ -78,12 +78,12 @@ def test_each_player_has_flush_black_wins():
     assert check_hand(test_hand) == "Black wins, - with Straight Flush: 12 over 6"
 
 def test_tie_two_pairs():
-    test_hand = "Black: 5H 5C 3H 3C JS  White: 5S 5D 4H 4C 10S"
+    test_hand = "Black: 5H 5C 3H 3C JS  White: 5S 5D 4H 4C TS"
     assert check_hand(test_hand) == "White wins, - with 2 pairs: 4 over 3"
 
 # Extremely Unlikely Cases.
 def test_tie_two_pairs_highest_card_match():
-     test_hand = "Black: 5H 5C 4H 4C JS  White: 5S 5D 4D 4S 10S"
+     test_hand = "Black: 5H 5C 4H 4C JS  White: 5S 5D 4D 4S TS"
      assert check_hand(test_hand) == "Black wins, - with 2 pairs: 11 over 10"
 
 def test_a_pair_and_highest_card_match():

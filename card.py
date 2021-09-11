@@ -2,6 +2,7 @@ class Card:
     def __init__(self, raw_card):
         
         card_num_value = {
+            "T" : 10,
             "J" : 11, 
             "Q" : 12, 
             "K" : 13, 

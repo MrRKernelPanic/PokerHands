@@ -37,25 +37,7 @@ def deal_with_draws(draw_hands):
     else:
         if deal_with_draws_2nd_pass(winners_second_pass) != "":
             return deal_with_draws_2nd_pass(winners_second_pass)
-        # for hand_type in PHand:
-        #     tie_breaker = max(hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) for hand in winners_second_pass)
-        #     winners_final_pass = [hand for hand in winners_second_pass if hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) == tie_breaker]
-        #     losers_second_pass = [hand for hand in winners_second_pass if hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) != tie_breaker]
             
-        #     if len(winners_final_pass) == 1:
-        #         return (winners_final_pass[0].hand_colour + " wins, - with " + winners_final_pass[0].find_poker_hand()
-        #         + ": " + str(winners_final_pass[0].remainder_high_card_after_high_hand(winners_final_pass[0].dict_high_card_lookup.get(winners_final_pass[0].phand)))
-        #         + " over " + str(losers_second_pass[0].remainder_high_card_after_high_hand(losers_second_pass[0].dict_high_card_lookup.get(losers_second_pass[0].phand))))
-        #     else:
-
-        #         if hand_type.value == "a pair":
-        #             if second_pair_check(winners_final_pass) != "":
-        #                 return second_pair_check(winners_final_pass)
-
-        #         if sequential_card_check(winners_final_pass) != "":
-        #             return sequential_card_check(winners_final_pass)
-        #         else:
-        #             return "Tie"                
 
 def deal_with_draws_2nd_pass(pass_hands):
     for hand_type in PHand:
