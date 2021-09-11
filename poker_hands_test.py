@@ -85,6 +85,7 @@ def test_tie_two_pairs():
 def test_tie_two_pairs_highest_card_match():
      test_hand = "Black: 5H 5C 4H 4C JS  White: 5S 5D 4D 4S 10S"
      assert check_hand(test_hand) == "Black wins, - with 2 pairs: 11 over 10"
-# def test_tie_two_pairs_highest_card_match():
-#     test_hand = "Black: 6H 6C 5H 4C 2S  White: 6S 6D 5D 3S 2D"
-#     assert check_hand(test_hand) == "Black wins, - with a pairs: 4 over 3"
+
+def test_a_pair_and_highest_card_match():
+    test_hand = "Black: 6H 6C 5H 4C 2S  White: 6S 6D 5D 3S 2D"
+    assert check_hand(test_hand) == "Black wins, - with a pair: 4 over 3"

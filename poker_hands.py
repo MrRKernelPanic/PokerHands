@@ -32,26 +32,40 @@ def check_hand(raw_player_hands):
             else:
                 for hand_type in PHand:
                     tie_breaker = max(hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) for hand in winners_second_pass)
-                    winners_second_pass2 = [hand for hand in winners_second_pass if hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) == tie_breaker]
+                    winners_final_pass = [hand for hand in winners_second_pass if hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) == tie_breaker]
                     losers_second_pass = [hand for hand in winners_second_pass if hand.remainder_high_card_after_high_hand(hand.dict_high_card_lookup.get(hand.phand)) != tie_breaker]
                     
-                    if len(winners_second_pass2) == 1:
-                        return (winners_second_pass2[0].hand_colour + " wins, - with " + winners_second_pass2[0].find_poker_hand()
-                        + ": " + str(winners_second_pass2[0].remainder_high_card_after_high_hand(winners_second_pass2[0].dict_high_card_lookup.get(winners_second_pass2[0].phand)))
+                    if len(winners_final_pass) == 1:
+                        return (winners_final_pass[0].hand_colour + " wins, - with " + winners_final_pass[0].find_poker_hand()
+                        + ": " + str(winners_final_pass[0].remainder_high_card_after_high_hand(winners_final_pass[0].dict_high_card_lookup.get(winners_final_pass[0].phand)))
                         + " over " + str(losers_second_pass[0].remainder_high_card_after_high_hand(losers_second_pass[0].dict_high_card_lookup.get(losers_second_pass[0].phand))))
                     else:
-                        if winners_second_pass2[0].two_pair_last_card_value > winners_second_pass2[1].two_pair_last_card_value:
-                            return (winners_second_pass2[0].hand_colour + " wins, - with " + winners_second_pass2[0].find_poker_hand()
-                                + ": " + str(winners_second_pass2[0].two_pair_last_card_value)
-                                + " over " + str(winners_second_pass2[1].two_pair_last_card_value))
-                        elif winners_second_pass2[0].two_pair_last_card_value > winners_second_pass2[1].two_pair_last_card_value:
-                            return (winners_second_pass2[1].hand_colour + " wins, - with " + winners_second_pass2[1].find_poker_hand()
-                                + ": " + str(winners_second_pass2[1].two_pair_last_card_value)
-                                + " over " + str(winners_second_pass2[0].two_pair_last_card_value))
-                        else:
-                        # for each in winners_second_pass2:
-                        #     print(each.two_pair_last_card_value)    
-                            return ("Tie")    
+
+                        if hand_type.value == "a pair":
+                            if winners_final_pass[0].two_pair_last_card_value > winners_final_pass[1].two_pair_last_card_value:
+                                return (winners_final_pass[0].hand_colour + " wins, - with " + winners_final_pass[0].find_poker_hand()
+                                    + ": " + str(winners_final_pass[0].two_pair_last_card_value)
+                                    + " over " + str(winners_final_pass[1].two_pair_last_card_value))
+                            elif winners_final_pass[0].two_pair_last_card_value > winners_final_pass[1].two_pair_last_card_value:
+                                return (winners_final_pass[1].hand_colour + " wins, - with " + winners_final_pass[1].find_poker_hand()
+                                    + ": " + str(winners_final_pass[1].two_pair_last_card_value)
+                                    + " over " + str(winners_final_pass[0].two_pair_last_card_value))
+                            for sequential_cards in range(0,5):
+                                if winners_final_pass[0].card_values[sequential_cards] != winners_final_pass[1].card_values[sequential_cards]:
+                                    if winners_final_pass[0].card_values[sequential_cards] > winners_final_pass[1].card_values[sequential_cards]:
+                                        return (winners_final_pass[0].hand_colour + " wins, - with " + winners_final_pass[0].find_poker_hand()
+                                            + ": " + str(winners_final_pass[0].card_values[sequential_cards])
+                                            + " over " + str(winners_final_pass[1].card_values[sequential_cards]))
+                                    elif winners_final_pass[0].card_values[sequential_cards] < winners_final_pass[0].card_values[sequential_cards]:
+                                        return (winners_final_pass[1].hand_colour + " wins, - with " + winners_final_pass[1].find_poker_hand()
+                                            + ": " + str(winners_final_pass[1].card_values[sequential_cards])
+                                            + " over " + str(winners_final_pass[0].card_values[sequential_cards]))
+                            return ("Tie")
+
+
+
+
+
         elif len(winners_first_pass) == 1:    
             return winners_first_pass[0].hand_colour + " wins, - with " + winners_first_pass[0].find_poker_hand()                
     return "Nobody Wins"

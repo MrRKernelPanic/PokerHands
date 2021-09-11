@@ -105,7 +105,7 @@ class Hand:
         self.card_values=[]
         for card in self.cards:
             self.card_values.append(card.value)
-            self.card_values.sort()
+        self.card_values.sort(reverse=True)
         return self.card_values
 
     def highest_card_for_tie_breaker(self, num_same_value_cards):
