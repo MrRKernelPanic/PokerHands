@@ -32,12 +32,12 @@ class Hand:
         self.highest_card_in_tie_breaker = self.highest_card_for_tie_breaker(self.dict_high_card_lookup.get(self.phand))
         self.remainder_hand_after_high_hand = self.remainder_hand_after_highest_poker_hand()
         self.hand_colour = player_colour
+        self.two_pair_last_card_value = self.two_pair_last_card()
 
     def find_poker_hand(self):
         return self.phand
 
     def search_for_poker_hand(self):
-
         self.max_card_num_value = self.get_max_card_value()
         self.min_card_num_value = self.get_min_card_value()
         self.unique_values = self.get_unique_values()
@@ -51,7 +51,7 @@ class Hand:
             else:
                 return PHand.FLUSH.value
 
-        if self.max_card_num_value - self.min_card_num_value == 4:
+        if self.max_card_num_value - self.min_card_num_value == 4 and self.unique_values[max(self.unique_values, key = self.unique_values.get)] == 1:
             return PHand.STRAIGHT.value
 
         if self.unique_values[max(self.unique_values, key = self.unique_values.get)] == 4:
@@ -105,15 +105,16 @@ class Hand:
         self.card_values=[]
         for card in self.cards:
             self.card_values.append(card.value)
+            self.card_values.sort()
         return self.card_values
 
     def highest_card_for_tie_breaker(self, num_same_value_cards):
         high_card_value = 0
         for each_card in self.card_values:
-                    count = self.card_values.count(each_card)
-                    if count == num_same_value_cards:
-                        if each_card >= high_card_value:
-                            high_card_value = each_card
+            count = self.card_values.count(each_card)
+            if count == num_same_value_cards:
+                if each_card >= high_card_value:
+                    high_card_value = each_card
         return high_card_value
     
     def remainder_hand_after_highest_poker_hand(self):
@@ -138,8 +139,18 @@ class Hand:
     def remainder_high_card_after_high_hand(self, num_same_value_cards):
         high_card_value = 0
         for each_card in self.remainder_values:
-                    count = self.remainder_values.count(each_card)
-                    if count == num_same_value_cards:
-                        if each_card >= high_card_value:
-                            high_card_value = each_card
+            count = self.remainder_values.count(each_card)
+            if count == num_same_value_cards:
+                if each_card >= high_card_value:
+                    high_card_value = each_card
         return high_card_value
+
+    def two_pair_last_card(self):
+        check_for_single_cards = []
+        for each_card in self.card_values:
+            if self.card_values.count(each_card) == 1:
+                check_for_single_cards.append(each_card)
+        
+        if len(check_for_single_cards) == 1:
+            return check_for_single_cards[0]
+        return 0
