@@ -1,8 +1,9 @@
 from enum import Enum
 
+
 class PHand(Enum):
     STRAIGHT_FLUSH = "Straight Flush"
-    FOUR_OF_A_KIND ="4 of a kind"
+    FOUR_OF_A_KIND = "4 of a kind"
     FULL_HOUSE = "Full house"
     FLUSH = "Flush"
     STRAIGHT = "Straight"
