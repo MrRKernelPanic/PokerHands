@@ -99,6 +99,6 @@ From a coding point of view I had never come across 'enums' or their usage and l
 
 This is one of the larger, more complicated project I have done with 100+ lines of test code and 35 individual tests and a couple of hundred lines of carefully considered and refactored code.
 
-I also realised quite late into the project that I hadn't strictly been following the PEP8 guidelines, installed an appropriate linter for Python and cleaned up the code, this mean splitting several of the more complex lines with a *\* something I had not really practised to stay within the 70 char per line limit.
+I also realised quite late into the project that I hadn't strictly been following the PEP8 guidelines, installed an appropriate linter for Python and cleaned up the code, this mean splitting several of the more complex lines with a *\\* something I had not really practised to stay within the 70 char per line limit.
 
 I took a good chunk of time at the end of the project to refactor several of the larger sections of my code trying to work more towards readable and simple to understand code.  I also discovered there is not 'switch or case statment' in Python I ended up with a rather large if/elif/else statement, but it tried to make this as simple to follow as possible.
