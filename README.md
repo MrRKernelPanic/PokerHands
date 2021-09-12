@@ -1,3 +1,4 @@
+![Poker](poker_banner.png)
 # Texas Holdem Hand Checker
 An implementation of (Texas Holdem) Poker hand checker in Python3 programmed using ping-pong methodology of team collaboration between 2.
 
@@ -10,10 +11,10 @@ The hands are passed as a single string in the format:
 
 The colour hand, their 5 cards represented by card and suit.  
 ```J, Q, K represent the royal cards```.  
-Also worth noting that Aces are high in Poker hands.
+Also worth noting that Aces ```'A'``` are high in Poker hands.
 
-### Requirements
-The program is required to determine the winning hand (black, white or in very rare cases a draw).  The program is passed a single string containing the players hands of 5 cards.
+## Requirements
+The program is required to determine the winning hand (black, white or in very rare cases a draw).  Each hand is assigned by a colour.  The program is passed a single string containing the players hands of 5 cards. The program will allow for several players, enough for a sensible game (Tested with 4).
 
 Each players hand is determined based on the following ascending criteria of importance/value.
 
@@ -28,13 +29,13 @@ Each players hand is determined based on the following ascending criteria of imp
 + Straight flush: 5 cards of the same suit with consecutive values. Ranked by the highest card in the hand
 
 
-### Approach
+## Approach
 A ```Test Driven Design``` approach was used to handle this solution.  
 
 Basic code was created to pass testing for a ```Flush``` of the 5 cards (for a single player).  Similar tests would be created for each type of hand based on a single set of cards that could later be scaled up to catering for both players.  Initially the system only handled the basic case of the 5 cards of one hand.  No player colour etc, just the 5 cards in a single string of the form ```<Value><Suit>``` e.g. ```'2H 3S 4D 5C 6D'```
 
-### Decisions and Limitations (subheading of Approach)
-A card class was created the handle each card, allowing the card objects to have a suit and value ```(later royal values were assigned 11,12,13 and 14 for J,Q,K and A respectively)```
+### Decisions and Limitations
+A card class was created the handle each card, allowing the card objects to have a suit and value ```(later high values were assigned 10,11,12,13 and 14 for T,J,Q,K and A respectively)```
 
 To test for different suits the hand was examined by each card, it was tested to see if it was already one of the ```'key'``` values of unique_suits(of the hand).  This allowed a dictionary of card suits and how many cards in the hand are of that particular suit.  For the flush the dictionary for the hand should only hold one 'key' being the suit and a value of 5 to show that each card of was of that single suit.
 
@@ -52,16 +53,13 @@ The ```'draw'``` scenarios were the last and most complex part to calculate.  Fi
 
 For ```2 pairs``` if the highest pair of each hand match you can compare the ```2nd pair``` (again it is unlikely that these will be equal)
 
-One possible solution to finding the winning would/could be an iterative process where the 'poker hand' is removed and the remainder compared using the existing checks that take place for hands.  The hand object is aware of the cards that remain after the 'poker hand' for comparison.
+One possible solution to finding the winning would/could be an iterative process where the 'poker hand' is removed and the remainder compared using the existing checks that take place for hands.  The hand object is aware of the cards that remain after the 'poker hand' for comparison.  After discussion it was decided this would not be the best idea, where possible keep the poker hands complete and find another way to iterate.
 
 
 During refactoring it was decided to use an Enum (Dictionary of the Poker hands) so that if code would have to be slightly tweaked or modified it would only have to be changed in fewer places, as reference would refer to these static values.
 
-A current limitation of the system is the fact that it will only check for a second ```poker hand``` and not beyond, e.g. it will compare a second pair, but if those match it will go no further a rare case like ```Black: 4S 4C 2D 2H 4H  White: 4H 4C 2S 2C 3S``` would not examine the remaining card and declare this a tie
 
 ### Possible Expansions of the project
-+ Deal beyond the second ```Poker hand```.
-+ Deal with more than 2 players, introduce a third ```Red:```.
 + A simple interface where the hands could be passed.
 
 ### Dependencies
@@ -94,9 +92,13 @@ To run an individual test simply invoke pytest with -k switch and specify the st
 e.g. ```pytest -k "each_player"``` will run the 8 tests that deal with each player having similar hands.
 
 
-### Reflections
+## Reflections
 This was my first real attempt of working closely with someone else on a single project together.  I found this process very interesting and rewarding.  I had some clear ideas of how I wanted to approach this however I really had to 'scale back' many of these ideas and start from a much simpler place, this let the code develop over time through the various sessions we worked upon this.  This approach of taking smaller chunks and simpler tests meant that code could be more easily refactored, checked and then made generic and simplified.  Working with someone else also meant that I could talk through and justify some of my design choices and reasoning, I would then get alternative view or suggestions and considerations that I had not thought about.  An agreement upon the next steps was then discussed and agreed upon.  I really liked this way of working and learnt a great deal throughout the process and really appreciated the communication required throughout.  
 
 From a coding point of view I had never come across 'enums' or their usage and learnt the benefits of only having to change code in a limited number of places by using references to it throughout the code.  This was also good practice of using dictionaries and keys to count and calculate.  It was also a good reminder of using objects and classes to structure the data and make the code more readable and legible to others.
 
-This is one of the larger, more complicated project I have done with 100+ lines of test code and 28+ individual tests and a couple of hundred lines of carefully considered and refactored code.
+This is one of the larger, more complicated project I have done with 100+ lines of test code and 35 individual tests and a couple of hundred lines of carefully considered and refactored code.
+
+I also realised quite late into the project that I hadn't strictly been following the PEP8 guidelines, installed an appropriate linter for Python and cleaned up the code, this mean splitting several of the more complex lines with a ```\``` something I had not really practised to stay within the 70 char per line limit.
+
+I took a good chunk of time at the end of the project to refactor several of the larger sections of my code trying to work more towards readable and simple to understand code.  I also discovered there is not 'switch or case statment' in Python I ended up with a rather large if/elif/else statement, but it tried to make this as simple to follow as possible.

@@ -123,6 +123,12 @@ def test_three_hands():
     assert check_hand(test_hand) == "Red wins, - with Straight Flush"
 
 
+def test_four_hands():
+    test_hand = ("Red: TH JH QH KH AH  Black: 6H 6C 5H 4C 2S  "
+                 + "White: 6S 6D 5D 3S 2D  Orange: 2H 2C 3D 4S 7S")
+    assert check_hand(test_hand) == "Red wins, - with Straight Flush"
+
+
 def test_exact_matching_cards_in_hands():
     test_hand = "Blue: TH JH QH KH AH  Green: TH 9H 8H 7H 6H"
     assert check_hand(test_hand) == "Matching Cards found in hands"

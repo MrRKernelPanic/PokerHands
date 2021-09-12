@@ -197,4 +197,3 @@ class Hand:
             else:
                 return PHand.TWO_PAIRS.value
         return ""
-        
