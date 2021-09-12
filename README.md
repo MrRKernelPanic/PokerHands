@@ -1,7 +1,7 @@
 # Texas Holdem Hand Checker
 An implementation of (Texas Holdem) Poker hand checker in Python3 programmed using ping-pong methodology of team collaboration between 2.
 
-[Original Kata](https://codingdojo.org/kata/PokerHands/ , 'Coding Dojo Texa Hand Cheker Kata')
+[Original Kata](https://codingdojo.org/kata/PokerHands/),'Coding Dojo Texa Hand Cheker Kata')
 
 The program deals with 2 hands, in this case black and white and termines the winner.
 The hands are passed as a single string in the format:

@@ -47,44 +47,18 @@ class Hand:
         self.unique_suits = self.get_unique_suits()
         self.card_values = self.get_card_values()
 
-        if len(self.unique_suits) == 1:
-
-            if self.max_card_num_value - self.min_card_num_value == 4:
-                return PHand.STRAIGHT_FLUSH.value
-            else:
-                return PHand.FLUSH.value
-
-        if self.max_card_num_value - self.min_card_num_value == 4\
-            and self.unique_values[
-                max(self.unique_values, key=self.unique_values.get)] == 1:
-            return PHand.STRAIGHT.value
-
-        if self.unique_values[
-                max(self.unique_values, key=self.unique_values.get)] == 4:
-            return PHand.FOUR_OF_A_KIND.value
-        elif self.unique_values[
-                max(self.unique_values, key=self.unique_values.get)] == 3\
-                and self.unique_values[
-                        min(
-                            self.unique_values, key=self.unique_values.get
-                            )] == 2:
-            return PHand.FULL_HOUSE.value
-        elif self.unique_values[
-                max(self.unique_values, key=self.unique_values.get)] == 3\
-                and self.unique_values[
-                    min(
-                        self.unique_values, key=self.unique_values.get)] == 1:
-            return PHand.THREE_UF_A_KIND.value
-        elif self.unique_values[
-                max(self.unique_values, key=self.unique_values.get)] == 2:
-            pair_count = 0
-            for key in self.unique_values:
-                if self.unique_values[key] == 2:
-                    pair_count += 1
-            if pair_count == 1:
-                return PHand.A_PAIR.value
-            else:
-                return PHand.TWO_PAIRS.value
+        if self.check_for_flush() != "":
+            return self.check_for_flush()
+        elif self.check_for_straight() != "":
+            return self.check_for_straight()
+        elif self.check_for_four_of_a_kind() != "":
+            return self.check_for_four_of_a_kind()
+        elif self.check_for_full_house() != "":
+            return self.check_for_full_house()
+        elif self.check_for_three_of_a_kind() != "":
+            return self.check_for_three_of_a_kind()
+        elif self.check_for_pairs() != "":
+            return self.check_for_pairs()
         else:
             return PHand.HIGH_CARD.value
 
@@ -170,3 +144,57 @@ class Hand:
         if len(check_for_single_cards) == 1:
             return check_for_single_cards[0]
         return 0
+
+    def check_for_flush(self):
+        if len(self.unique_suits) == 1:
+            if self.max_card_num_value - self.min_card_num_value == 4:
+                return PHand.STRAIGHT_FLUSH.value
+            else:
+                return PHand.FLUSH.value
+        return ""
+
+    def check_for_straight(self):
+        if self.max_card_num_value - self.min_card_num_value == 4\
+            and self.unique_values[
+                max(self.unique_values, key=self.unique_values.get)] == 1:
+            return PHand.STRAIGHT.value
+        return ""
+
+    def check_for_four_of_a_kind(self):
+        if self.unique_values[
+                max(self.unique_values, key=self.unique_values.get)] == 4:
+            return PHand.FOUR_OF_A_KIND.value
+        return ""
+
+    def check_for_full_house(self):
+        if self.unique_values[
+                max(self.unique_values, key=self.unique_values.get)] == 3\
+                and self.unique_values[
+                        min(
+                            self.unique_values, key=self.unique_values.get
+                            )] == 2:
+            return PHand.FULL_HOUSE.value
+        return ""
+
+    def check_for_three_of_a_kind(self):
+        if self.unique_values[
+                max(self.unique_values, key=self.unique_values.get)] == 3\
+                and self.unique_values[
+                    min(
+                        self.unique_values, key=self.unique_values.get)] == 1:
+            return PHand.THREE_UF_A_KIND.value
+        return ""
+
+    def check_for_pairs(self):
+        if self.unique_values[
+                max(self.unique_values, key=self.unique_values.get)] == 2:
+            pair_count = 0
+            for key in self.unique_values:
+                if self.unique_values[key] == 2:
+                    pair_count += 1
+            if pair_count == 1:
+                return PHand.A_PAIR.value
+            else:
+                return PHand.TWO_PAIRS.value
+        return ""
+        
