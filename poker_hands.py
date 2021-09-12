@@ -47,7 +47,6 @@ def deal_with_draws(draw_hands):
         if hand.highest_card_in_tie_breaker
         != tie_breaker
         ]
-
     if len(winners_second_pass) == 1:
         return construct_win_msg(winners_second_pass[0],
                                  losers_first_pass[0],
@@ -75,7 +74,6 @@ def deal_with_draws_2nd_pass(pass_hands):
                                 hand.dict_high_card_lookup.get(hand.phand))
                             != tie_breaker
             ]
-
         if len(winners_final_pass) == 1:
             return construct_win_msg(winners_final_pass[0],
                                      losers_second_pass[0],
