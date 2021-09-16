@@ -45,13 +45,13 @@ def test_a_pair_black_wins():
 def test_highest_card_white_wins():
     test_hand = "Black: 2C 3D 9C 8C 7S  White: 3C 4D TC 9H 8H"
     assert check_hand(test_hand)\
-        == "White wins, - with the highest card: 10 over 9"
+        == "White wins, - with the highest card: T over 9"
 
 
 def test_highest_card_black_wins():
     test_hand = "Black: 2C 3D JC 8C 7S  White: 3C 4D 9C 2H 8H"
     assert check_hand(test_hand)\
-        == "Black wins, - with the highest card: 11 over 9"
+        == "Black wins, - with the highest card: J over 9"
 
 
 def test_highest_card_draw():
@@ -92,13 +92,13 @@ def test_each_player_has_full_house_white_wins():
 
 def test_each_player_has_flush_white_wins():
     test_hand = "Black: 3S 2S 4S 5S 7S  White: KH 7H 8H 9H TH JH"
-    assert check_hand(test_hand) == "White wins, - with Flush: 13 over 7"
+    assert check_hand(test_hand) == "White wins, - with Flush: K over 7"
 
 
 def test_each_player_has_flush_black_wins():
     test_hand = "Black: QH 8H 9H 10H JH  White: 3S 2S 4S 5S 6S"
     assert check_hand(test_hand)\
-        == "Black wins, - with Straight Flush: 12 over 6"
+        == "Black wins, - with Straight Flush: Q over 6"
 
 
 def test_tie_two_pairs():
@@ -109,7 +109,7 @@ def test_tie_two_pairs():
 def test_tie_two_pairs_highest_card_match():
     test_hand = "Black: 5H 5C 4H 4C JS  White: 5S 5D 4D 4S TS"
     assert check_hand(test_hand)\
-        == "Black wins, - with 2 pairs: 11 over 10"
+        == "Black wins, - with 2 pairs: J over T"
 
 
 def test_a_pair_and_highest_card_match():

@@ -122,25 +122,42 @@ def check_duplicate_cards_dealt(sent_cards):
 def construct_win_msg(winner, loser, win_type, card_index=-1):
     mid_str = " wins, - with "
     base_str = winner.hand_colour + mid_str + winner.find_poker_hand()
+    final_str = ""
 
     if win_type == "win":
-        return base_str
+        final_str = base_str
     elif win_type == "win_1st_pass":
-        return (base_str
-                + ": "
-                + str(winner.highest_card_in_tie_breaker)
-                + " over " + str(loser.highest_card_in_tie_breaker))
+        final_str = (base_str
+                     + ": "
+                     + str(winner.highest_card_in_tie_breaker)
+                     + " over " + str(loser.highest_card_in_tie_breaker))
     elif win_type == "win_2nd_pass":
-        return (base_str
-                + ": " + str(winner.remainder_high_card_after_high_hand(
-                    winner.dict_high_card_lookup.get(winner.phand)))
-                + " over " + str(loser.remainder_high_card_after_high_hand(
-                    loser.dict_high_card_lookup.get(loser.phand))))
+        final_str = (base_str
+                     + ": " + str(winner.remainder_high_card_after_high_hand(
+                      winner.dict_high_card_lookup.get(winner.phand)))
+                     + " over " + str(loser.remainder_high_card_after_high_hand(
+                      loser.dict_high_card_lookup.get(loser.phand))))
     elif win_type == "win_2nd_pair":
-        return (base_str
-                + ": " + str(winner.two_pair_last_card_value)
-                + " over " + str(loser.two_pair_last_card_value))
+        final_str = (base_str
+                     + ": " + str(winner.two_pair_last_card_value)
+                     + " over " + str(loser.two_pair_last_card_value))
     elif win_type == "win_seq":
-        return (base_str
-                + ": " + str(winner.card_values[card_index])
-                + " over " + str(loser.card_values[card_index]))
+        final_str = (base_str
+                     + ": " + str(winner.card_values[card_index])
+                     + " over " + str(loser.card_values[card_index]))
+
+    final_str = put_back_face_cards(final_str)
+    return final_str
+
+
+def put_back_face_cards(temp_string):
+    card_num_value = {
+        "T": 10,
+        "J": 11,
+        "Q": 12,
+        "K": 13,
+        "A": 14
+    }
+    for key, value in card_num_value.items():
+        temp_string = temp_string.replace(str(value), key)
+    return temp_string
