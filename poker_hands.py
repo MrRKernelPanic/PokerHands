@@ -15,6 +15,9 @@ def check_hand(raw_player_hands):
         hands_to_compare.append(_make_hand)
     _cards_dealt = all_cards_dealt[1:].split(' ')
 
+    if len(hands_to_compare) > 10:
+        return ("Too many hands to calculate")
+
     if check_duplicate_cards_dealt(_cards_dealt) != "":
         return check_duplicate_cards_dealt(_cards_dealt)
 

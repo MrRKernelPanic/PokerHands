@@ -137,3 +137,22 @@ def test_exact_matching_cards_in_hands():
 def test_tie():
     test_hand = "Purple: 1H 3H 5S 7S 8S  Yellow: 1C 3C 5D 7D 8D"
     assert check_hand(test_hand) == "Tie"
+
+
+def test_just_enough_hands():
+    test_hand = ("Red: 1H 3H 5H 7H 8H  Black: 2H 4H 6H 9H TH  "
+                 + "White: 1C 3C 5C 7C 9C  Yellow: 2C 4C 6C 8C TC  "
+                 + "Orange: 1S 3S 5S 7S 9S  Green: 2S 4S 6S 8S TS  "
+                 + "Blue: 1D 3D 5D 7D 9D  Purple: 2D 4D 6D 8D TD  "
+                 + "Pink: JH QH KH JC QC  Brown: KC JS QS KS JD")
+    assert check_hand(test_hand) == "Black wins, - with Flush: 9 over 8"
+
+
+def test_too_many_hands():
+    test_hand = ("Red: 1H 3H 5H 7H 8H  Black: 2H 4H 6H 9H TH  "
+                 + "White: 1C 3C 5C 7C 9C  Yellow: 2C 4C 6C 8C TC  "
+                 + "Orange: 1S 3S 5S 7S 9S  Green: 2S 4S 6S 8S TS  "
+                 + "Blue: 1D 3D 5D 7D 9D  Purple: 2D 4D 6D 8D TD  "
+                 + "Pink: JH QH KH JC QC  Brown: KC JS QS KS JD  "
+                 + "Violet: QD KD")
+    assert check_hand(test_hand) == "Too many hands to calculate"
