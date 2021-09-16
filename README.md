@@ -14,7 +14,7 @@ The colour hand, their 5 cards represented by card and suit.
 Also worth noting that Aces ```'A'``` are high in Poker hands.
 
 ## Requirements
-The program is required to determine the winning hand (black, white or in very rare cases a draw).  Each hand is assigned by a colour.  The program is passed a single string containing the players hands of 5 cards. The program will allow for several players, enough for a sensible game (Tested with 4).
+The program is required to determine the winning hand (black, white etc. or in very rare cases a draw).  Each hand is assigned by a colour.  The program is passed a single string containing the players hands of 5 cards. The program will allow for several players, enough for a sensible game (Limited to 10 hands).
 
 Each players hand is determined based on the following ascending criteria of importance/value.
 
@@ -82,7 +82,7 @@ import the check_hand function from poker hands
 ```from poker_hands import check_hand```
 then call the check_hand function by passing the string that contains the hand colour and 5 cards
 e.g. 'Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S' N.B. there is a double space between the hands.
-e.g. ```winner = check_hands('Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S')```
+e.g. <pre>winner = check_hands('Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S')</pre>
 
 ### Testing
 You will find included test files for both the hands object and the checking of poker_hands
@@ -99,6 +99,6 @@ From a coding point of view I had never come across 'enums' or their usage and l
 
 This is one of the larger, more complicated project I have done with 100+ lines of test code and 35 individual tests and a couple of hundred lines of carefully considered and refactored code.
 
-I also realised quite late into the project that I hadn't strictly been following the PEP8 guidelines, installed an appropriate linter for Python and cleaned up the code, this mean splitting several of the more complex lines with a *\\* something I had not really practised to stay within the 70 char per line limit.
+I also realised quite late into the project that I hadn't strictly been following the PEP8 guidelines, installed an appropriate linter for Python and cleaned up the code, this mean splitting several of the more complex lines with a *\\* something I had not really practised staying within the 70 char per line limit.
 
 I took a good chunk of time at the end of the project to refactor several of the larger sections of my code trying to work more towards readable and simple to understand code.  I also discovered there is not 'switch or case statment' in Python I ended up with a rather large if/elif/else statement, but it tried to make this as simple to follow as possible.
