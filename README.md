@@ -7,7 +7,7 @@ An implementation of (Texas Holdem) Poker hand checker in Python3 programmed usi
 The program deals with 2 hands, in this case black and white and termines the winner.
 The hands are passed as a single string in the format:
 
-```Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S```
+<pre>Black: 2H 4S 4C 2D 4H  White: 2S 8S AS QS 3S</pre>
 
 The colour hand, their 5 cards represented by card and suit.  
 ```J, Q, K represent the royal cards```.  
